@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jbo1
+spec:
+  template:
+    metadata:
+    spec:
+      containers:
+      - name: job1
+        image: centos
+        command: ["curl", "https://www.google.com"]
+      restartPolicy: Never
+  backoffLimit: 4
+
