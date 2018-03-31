@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset1
+  labels:
+    app: nginx
+    server: webserver
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule 
+      containers:
+      - name: nginxdaemon
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+       
